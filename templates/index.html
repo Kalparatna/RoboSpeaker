@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RoboSpeaker</title>
+    <style>
+        /* Add your professional CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RoboSpeaker</h1>
+        <form id="speak-form">
+            <input type="text" id="text" placeholder="Enter the Line">
+            <button type="submit">Speak</button>
+        </form>
+        <div id="output"></div>
+    </div>
+
+    <div class="footer">
+        &copy; <span id="currentYear"></span> Made By Kalparatna | All Right Reserved
+    </div>
+
+    <script>
+        document.getElementById("speak-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var text = document.getElementById("text").value;
+            if (text === "0") {
+                document.getElementById("output").innerHTML = "Ok bye, See you again";
+            } else {
+                var speech = new SpeechSynthesisUtterance(text);
+                window.speechSynthesis.speak(speech);
+                document.getElementById("output").innerHTML = "Speaking: " + text;
+            }
+        });
+
+        // JavaScript to set the current year in the footer
+        var currentYear = new Date().getFullYear();
+        document.getElementById("currentYear").textContent = currentYear;
+    </script>
+</body>
+</html>
